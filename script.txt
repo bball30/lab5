@@ -1,0 +1,22 @@
+info
+add
+P3122
+42
+50
+30
+10
+12
+DISTANCE_EDUCATION
+Лёха
+90
+S3118281
+GREEN
+USA
+123
+321
+145
+Дом
+info
+remove_by_id 4
+info
+execute_script script.txt
