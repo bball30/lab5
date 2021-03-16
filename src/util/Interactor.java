@@ -413,7 +413,7 @@ public class Interactor {
     }
 
     /**
-     * converts Double -> Float
+     * converts Double to Float
      *
      * @param f Double value
      * @return Float value

@@ -44,7 +44,7 @@ public class FileManager {
             try {
                 JAXBContext jaxbContext = JAXBContext.newInstance(StudyGroups.class);
                 Marshaller marshaller = jaxbContext.createMarshaller();
-                marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+                marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
                 StudyGroups result = new StudyGroups();
                 result.setStudyGroups(collection);
                 marshaller.marshal(result, getBufferedWriter());
@@ -70,7 +70,7 @@ public class FileManager {
                 unmarshaller.unmarshal(getInputStreamReader());
                 StudyGroups studyGroups = (StudyGroups) unmarshaller.unmarshal(new File(System.getenv(envVariable)));
                 LinkedHashSet<StudyGroup> collection = studyGroups.getStudyGroups();
-                Console.println("Коллекция успешна загружена!");
+                Console.println("Коллекция успешно загружена!");
                 return collection;
             } catch (NoSuchElementException exception) {
                 Console.printerror("Загрузочный файл пуст!");
@@ -80,6 +80,7 @@ public class FileManager {
                 Console.printerror("Непредвиденная ошибка!");
             } catch (JAXBException e) {
                 Console.printerror("Ошибка прочтения XML-файла");
+                e.printStackTrace();
             } catch (FileNotFoundException e) {
                 Console.printerror("Файл не найден");
             } catch (NoAccessToFileException e) {

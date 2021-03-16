@@ -3,7 +3,7 @@ package data;
 import javax.xml.bind.annotation.XmlEnum;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name="FormOfEducation")
+@XmlRootElement(name="formOfEducation")
 @XmlEnum
 public enum FormOfEducation {
     DISTANCE_EDUCATION,

@@ -3,11 +3,12 @@ package data;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.Objects;
 
 /**
  * X-Y coordinates.
  */
-@XmlRootElement(name="Coordinates")
+@XmlRootElement(name="coordinates")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Coordinates {
     private double x;
@@ -17,6 +18,8 @@ public class Coordinates {
         this.x = x;
         this.y = y;
     }
+
+    public Coordinates(){}
 
     /**
      * @return X-coordinate.
@@ -38,17 +41,16 @@ public class Coordinates {
     }
 
     @Override
-    public int hashCode() {
-        return y.hashCode() + (int) x;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Coordinates that = (Coordinates) o;
+        return Double.compare(that.x, x) == 0 &&
+                Objects.equals(y, that.y);
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj instanceof Coordinates) {
-            Coordinates coordinatesObj = (Coordinates) obj;
-            return (x == coordinatesObj.getX()) && y.equals(coordinatesObj.getY());
-        }
-        return false;
+    public int hashCode() {
+        return Objects.hash(x, y);
     }
 }

@@ -5,7 +5,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Objects;
 
-@XmlRootElement(name="Person")
+@XmlRootElement(name="groupAdmin")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Person {
     private String name; //Поле не может быть null, Строка не может быть пустой
@@ -72,11 +72,6 @@ public class Person {
         this.location = location;
     }
 
-    public boolean similar(Person p){
-        return Objects.equals(name, p.name) && Objects.equals(passportID, p.passportID)
-                && Objects.equals(hairColor, p.hairColor) && Objects.equals(nationality, p.nationality)
-                && Objects.equals(location, p.location);
-    }
 
     @Override
     public boolean equals(Object o) {

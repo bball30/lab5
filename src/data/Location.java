@@ -5,7 +5,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Objects;
 
-@XmlRootElement(name="Location")
+@XmlRootElement(name="location")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Location {
     private Long x; //Поле не может быть null

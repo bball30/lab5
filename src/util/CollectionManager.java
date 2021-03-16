@@ -1,6 +1,6 @@
 package util;
 
-import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
 import java.util.*;
 
 import data.Person;
@@ -8,10 +8,9 @@ import data.StudyGroup;
 
 public class CollectionManager {
     private LinkedHashSet<StudyGroup> myCollection = new LinkedHashSet<>();
-    private ZonedDateTime lastInitTime;
-    private ZonedDateTime lastSaveTime;
+    private LocalDateTime lastInitTime;
+    private LocalDateTime lastSaveTime;
     private FileManager fileManager;
-    private int lastId;
 
     public CollectionManager(FileManager fileManager){
         this.lastInitTime = null;
@@ -31,14 +30,14 @@ public class CollectionManager {
     /**
      * @return Last initialization time or null if there wasn't initialization.
      */
-    public ZonedDateTime getLastInitTime() {
+    public LocalDateTime getLastInitTime() {
         return lastInitTime;
     }
 
     /**
      * @return Last save time or null if there wasn't saving.
      */
-    public ZonedDateTime getLastSaveTime() {
+    public LocalDateTime getLastSaveTime() {
         return lastSaveTime;
     }
 
@@ -56,23 +55,19 @@ public class CollectionManager {
         return myCollection.size();
     }
 
-/*
     /**
-     * @return The first element of the collection or null if collection is empty.
-     *
-    public StudyGroup getFirst() {
-        if (myCollection.isEmpty()) return null;
-        return myCollection.first();
+     * @param collection myCollection
+     * @param <StudyGroup> studyGroup
+     * @return The last element of the collection or null if collection is empty
+     */
+    public <StudyGroup> StudyGroup getLast(Collection<StudyGroup> collection) {
+        if (myCollection.isEmpty()) {return null;}
+        else {StudyGroup last = null;
+        for (StudyGroup s : collection) last = s;
+        return last;
+        }
     }
 
-    /**
-     * @return The last element of the collection or null if collection is empty.
-     *
-    public StudyGroup getLast() {
-        if (myCollection.isEmpty()) return null;
-        return myCollection.last();
-    }
-*/
     /**
      * Remove marines greater than the selected one.
      * @param studyGroup A studyGroup to compare with.
@@ -87,7 +82,7 @@ public class CollectionManager {
 
     /**
      * @param id ID of the studyGroup.
-     * @return A studyGroup by his ID or null if studyGroup isn't found.
+     * @return studyGroup by his ID or null if studyGroup isn't found.
      */
     public StudyGroup getById(Integer id) {
         for (StudyGroup studyGroup : myCollection) {
@@ -109,7 +104,7 @@ public class CollectionManager {
 
     public StudyGroup getByFormOfEducation(String form) {
         for (StudyGroup studyGroup : myCollection) {
-            if (studyGroup.getFormOfEducation().name() == form) return studyGroup;
+            if (studyGroup.getFormOfEducation().name().equals(form)) return studyGroup;
         }
         return null;
     }
@@ -142,8 +137,8 @@ public class CollectionManager {
      * @return Next ID.
      */
     public Integer generateNextId() {
-        if (myCollection.isEmpty()) return lastId;
-        return lastId + 1;
+        if (myCollection.isEmpty()) return 1;
+        return getLast(myCollection).getId() + 1;
     }
 
     /**
@@ -151,7 +146,7 @@ public class CollectionManager {
      */
     public void saveCollection() {
         fileManager.writeCollection(myCollection);
-        lastSaveTime = ZonedDateTime.now();
+        lastSaveTime = LocalDateTime.now();
     }
 
     /**
@@ -159,7 +154,7 @@ public class CollectionManager {
      */
     private void loadCollection() {
         myCollection = fileManager.readCollection();
-        lastInitTime = ZonedDateTime.now();
+        lastInitTime = LocalDateTime.now();
     }
 
     public ArrayList<Long> sortedByShouldBeExpelled(){

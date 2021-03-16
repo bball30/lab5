@@ -3,8 +3,12 @@ package run;
 import commands.*;
 import util.*;
 
+
 import java.util.Scanner;
 
+/**
+ * Main application class. Creates all instances and runs the program.
+ */
 public class Main {
     public static final String INPUT_COMMAND = "$ ";
     public static final String INPUT_INFO = "> ";

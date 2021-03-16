@@ -30,7 +30,7 @@ public class StudyGroup implements Comparable<StudyGroup>{
      * @param id - study group ID
      * @param name - study group name
      * @param coordinates - study group coordinates object
-     * @param creationDate - ZonedDateTime object of creation date
+     * @param creationDate - LocalDateTime object of creation date
      * @param studentsCount - students count in the group
      * @param averageMark - average mark of students in the group
      * @param shouldBeExpelled - should be expelled students count in the group

@@ -1,5 +1,6 @@
 package commands;
 
+import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 
 import exceptions.WrongAmountOfArgumentsException;
@@ -25,11 +26,11 @@ public class InfoCommand extends Command {
     public boolean execute(String argument) {
         try {
             if (!argument.isEmpty()) throw new WrongAmountOfArgumentsException();
-            ZonedDateTime lastInitTime = collectionManager.getLastInitTime();
+            LocalDateTime lastInitTime = collectionManager.getLastInitTime();
             String lastInitTimeString = (lastInitTime == null) ? "в данной сессии инициализации еще не происходило" :
                     lastInitTime.toString();
 
-            ZonedDateTime lastSaveTime = collectionManager.getLastSaveTime();
+            LocalDateTime lastSaveTime = collectionManager.getLastSaveTime();
             String lastSaveTimeString = (lastSaveTime == null) ? "в данной сессии сохранения еще не происходило" :
                     lastSaveTime.toString();
 

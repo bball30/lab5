@@ -1,4 +1,6 @@
 package exceptions;
 
-public class HistoryIsEmptyException extends Exception{
-}
+/**
+ * Is throwing when history is empty.
+ */
+public class HistoryIsEmptyException extends Exception{ }

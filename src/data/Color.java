@@ -3,7 +3,7 @@ package data;
 import javax.xml.bind.annotation.XmlEnum;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name="Color")
+@XmlRootElement(name="hairColor")
 @XmlEnum
 public enum Color {
     GREEN,
